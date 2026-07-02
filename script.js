@@ -1,6 +1,20 @@
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
+// GitHub Pages asset-path fix.
+// Your repo currently has images/PDF in the root directory, while the original
+// HTML references them inside /assets/. This keeps the current repo structure
+// working without manual file moves.
+function fixRootAssetPaths(){
+  $$('img[src^="assets/"]').forEach(img => {
+    img.src = img.getAttribute('src').replace(/^assets\//, '');
+  });
+  $$('a[href^="assets/"]').forEach(link => {
+    link.href = link.getAttribute('href').replace(/^assets\//, '');
+  });
+}
+fixRootAssetPaths();
+
 const progress = $('.progress span');
 const headerLinks = $$('.nav-links a[href^="#"]');
 const sections = headerLinks.map(a => $(a.getAttribute('href'))).filter(Boolean);
@@ -39,7 +53,7 @@ const cases = {
   brightside: {
     tag: 'Service business website',
     title: 'Brightside Daycare',
-    image: 'assets/work-brightside.webp',
+    image: 'work-brightside.webp',
     alt: 'Brightside Daycare website screenshot',
     summary: 'A warm, conversion-focused daycare website built around parent trust, safety, care, provider credibility, and tour booking.',
     problem: 'Parents need emotional confidence before they submit a form. The page had to communicate safety, warmth, professionalism, and clear care options fast.',
@@ -50,7 +64,7 @@ const cases = {
   inclass: {
     tag: 'Nonprofit growth website',
     title: 'InCLASS Inc.',
-    image: 'assets/work-inclass.webp',
+    image: 'work-inclass.webp',
     alt: 'InCLASS nonprofit website screenshot',
     summary: 'A nonprofit digital experience structured around students, parents, donors, community programs, and measurable mission support.',
     problem: 'Education nonprofits need clarity for multiple audiences at once: students, parents, donors, partners, and volunteers.',
@@ -61,7 +75,7 @@ const cases = {
   megan: {
     tag: 'Creator / artist portfolio',
     title: 'Megan Kashat',
-    image: 'assets/work-megan.webp',
+    image: 'work-megan.webp',
     alt: 'Megan Kashat website screenshot',
     summary: 'An expressive artist portfolio designed to turn creative identity into a clear path for original artwork, commissions, and audience connection.',
     problem: 'Artists and creators often have strong personality but weak conversion flow. The work needs to feel emotional and still guide action.',
@@ -72,7 +86,7 @@ const cases = {
   realestate: {
     tag: 'Premium landing page concept',
     title: 'Real Estate Should Flirt Back',
-    image: 'assets/work-real-estate.webp',
+    image: 'work-real-estate.webp',
     alt: 'Premium real estate landing page screenshot',
     summary: 'A cinematic real estate concept built to make property browsing feel premium, editorial, and emotionally memorable.',
     problem: 'Most real estate pages look transactional. Premium buyers need atmosphere, story, confidence, and a sense of exclusivity.',
@@ -83,7 +97,7 @@ const cases = {
   redline: {
     tag: 'Experimental automotive UI',
     title: 'Redline Royale',
-    image: 'assets/work-redline.webp',
+    image: 'work-redline.webp',
     alt: 'Redline Royale website screenshot',
     summary: 'A bold automotive showroom concept designed to make car browsing feel cinematic, fast, and character-driven.',
     problem: 'Car sites often reduce desire into specifications. The interface needed to sell personality, energy, and showroom drama.',
@@ -94,7 +108,7 @@ const cases = {
   janobi: {
     tag: 'Brand systems & agency work',
     title: 'Janobi Selected Work',
-    image: 'assets/deck-branding-grid.webp',
+    image: 'deck-branding-grid.webp',
     alt: 'Janobi selected branding work',
     summary: 'Selected identity, website, content, and campaign visuals showing the breadth of Janobi’s creative and strategic execution.',
     problem: 'Brands need more than beautiful assets. They need a connected system that feels memorable and supports business outcomes.',
@@ -160,7 +174,7 @@ $('#projectForm')?.addEventListener('submit', (e) => {
   location.href = `mailto:hamza@janobi.agency?subject=${subject}&body=${body}`;
 });
 
-// magnetic movement on cards, subtle enough not to annoy
+// Magnetic movement on cards, subtle enough not to annoy.
 $$('.service-card,.work-card,.router-card,.btn').forEach(el => {
   el.addEventListener('mousemove', (e) => {
     if(matchMedia('(max-width: 760px)').matches) return;
