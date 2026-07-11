@@ -66,4 +66,4 @@ jobs:
           git commit -m "Embed HubSpot CRM inquiry form"
           git push
 
-# Triggered after the HubSpot form was published.
+# Triggered by ChatGPT after form publication.
