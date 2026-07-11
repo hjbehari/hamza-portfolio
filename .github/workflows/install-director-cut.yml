@@ -1,0 +1,50 @@
+name: Install Director Cut
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/install-director-cut.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Add performance and motion assets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+
+          css = '  <link rel="stylesheet" href="director-cut.css" />\n'
+          js = '  <script src="director-cut.js" defer></script>\n'
+
+          if 'href="director-cut.css"' not in html:
+              html = html.replace('  <link rel="stylesheet" href="style.css" />\n', '  <link rel="stylesheet" href="style.css" />\n' + css, 1)
+
+          if 'src="director-cut.js"' not in html:
+              html = html.replace('  <script src="script.js"></script>\n', '  <script src="script.js"></script>\n' + js, 1)
+
+          path.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Commit installation
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "Director Cut already installed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Enable Director's Cut interactions"
+          git push
