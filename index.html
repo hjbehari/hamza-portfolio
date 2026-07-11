@@ -15,6 +15,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style id="reviewsCss">
+    .reviews{background:linear-gradient(180deg,#0a0e0c 0%,#070908 100%);position:relative;overflow:hidden}
+    .reviews:before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;right:-240px;top:-220px;background:radial-gradient(circle,rgba(155,234,202,.13),transparent 68%);pointer-events:none}
+    .review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:54px}
+    .review-card{border:1px solid rgba(255,255,255,.09);background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;min-height:330px;position:relative;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);transition:.3s ease}
+    .review-card:hover{transform:translateY(-6px);border-color:rgba(155,234,202,.34)}
+    .review-card:after{content:"";position:absolute;inset:auto -20% -70% -20%;height:160px;background:radial-gradient(circle,rgba(155,234,202,.14),transparent 65%);pointer-events:none}
+    .proof-badge{display:inline-flex;align-items:center;gap:8px;width:max-content;padding:8px 11px;border-radius:999px;border:1px solid rgba(155,234,202,.23);background:rgba(155,234,202,.07);color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:30px}
+    .proof-badge:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px rgba(155,234,202,.8)}
+    .review-card h3{font-family:var(--serif);font-size:clamp(32px,3vw,48px);line-height:.98;margin-bottom:8px}
+    .review-role{color:var(--accent);font-size:13px;font-weight:800;margin-bottom:22px}
+    .review-service{font-size:17px;font-weight:800;margin-bottom:10px}
+    .review-card p{color:var(--muted);line-height:1.68;font-size:14px;margin-bottom:24px}
+    .review-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;position:relative;z-index:2}
+    .review-link{display:inline-flex;align-items:center;justify-content:center;min-height:43px;padding:0 15px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);font-size:12px;font-weight:800;transition:.25s ease}
+    .review-link:hover{border-color:rgba(155,234,202,.38);background:rgba(155,234,202,.08);transform:translateY(-2px)}
+    .review-link.primary{background:var(--accent);color:#06100c;border-color:var(--accent)}
+    .review-link.primary:hover{background:var(--accent2)}
+    .proof-note{color:var(--dim);font-size:12px;line-height:1.6;margin-top:20px;text-align:center}
+    @media(max-width:760px){.review-grid{grid-template-columns:1fr}.review-card{min-height:auto}.review-card h3{font-size:38px}}
+  </style>
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -36,6 +57,7 @@
       <a href="#work">Work</a>
       <a href="#services">Services</a>
       <a href="#results">Results</a>
+      <a href="#reviews">Reviews</a>
       <a href="#process">Process</a>
       <a href="#about">About</a>
       <a class="nav-cta" href="https://calendly.com/hamzabehari/30min" target="_blank" rel="noopener">Book a Call</a>
@@ -261,6 +283,65 @@
         <div class="metric-card reveal"><strong>2x</strong><span>impressions growth</span></div>
         <div class="metric-card reveal delay-1"><strong>Meta Ads</strong><span>lead-generation direction</span></div>
       </div>
+    </section>
+
+    <section class="section-pad reviews" id="reviews">
+      <div class="container section-head reveal">
+        <p class="eyebrow"><span></span>Client proof</p>
+        <h2>Trusted with the work clients rarely hand to strangers.</h2>
+        <p>Original social reviews and public introductions showing the support I have been trusted to provide across advertising, web copy, nonprofit growth, and ongoing marketing leadership.</p>
+      </div>
+
+      <div class="container review-grid">
+        <article class="review-card reveal">
+          <span class="proof-badge">Instagram review</span>
+          <h3><a href="https://www.megankashat.com/" target="_blank" rel="noopener noreferrer">Megan Kashat</a></h3>
+          <div class="review-role">Artist, creator &amp; founder</div>
+          <div class="review-service">Meta Business Suite &amp; Ads Assistance</div>
+          <p>Supported Meta account setup, troubleshooting, advertising direction, and clearer use of Meta's business tools.</p>
+          <div class="review-links">
+            <a class="review-link" href="https://www.megankashat.com/" target="_blank" rel="noopener noreferrer">Visit website</a>
+            <a class="review-link primary" href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDY5MjYzMDIxNjkwNjA3?story_media_id=3902056190972871374_1410712384&amp;igsh=MW43eXZxZG82eDI5Nw==" target="_blank" rel="noopener noreferrer">Watch review ↗</a>
+          </div>
+        </article>
+
+        <article class="review-card reveal delay-1">
+          <span class="proof-badge">Instagram review</span>
+          <h3><a href="https://mukhtaridris523-ea.github.io/asabe-conglomerate/" target="_blank" rel="noopener noreferrer">Mukhtar Aloma</a></h3>
+          <div class="review-role">Founder, Asabe Conglomerate</div>
+          <div class="review-service">Website Copy Enhancement</div>
+          <p>Clarified the website's messaging, strengthened its page copy, and made the business easier to understand online.</p>
+          <div class="review-links">
+            <a class="review-link" href="https://mukhtaridris523-ea.github.io/asabe-conglomerate/" target="_blank" rel="noopener noreferrer">Visit website</a>
+            <a class="review-link primary" href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDY5MjYzMDIxNjkwNjA3?story_media_id=3907266950735633816_1410712384&amp;igsh=MW43eXZxZG82eDI5Nw==" target="_blank" rel="noopener noreferrer">Watch review ↗</a>
+          </div>
+        </article>
+
+        <article class="review-card reveal">
+          <span class="proof-badge">Facebook introduction</span>
+          <h3><a href="https://yonkersbcc.org/" target="_blank" rel="noopener noreferrer">Broadway Community Center</a></h3>
+          <div class="review-role">Marketing Head · Yonkers, New York</div>
+          <div class="review-service">Ongoing Marketing Leadership</div>
+          <p>Trusted with marketing direction, client and team communication, campaign coordination, website growth, and community visibility.</p>
+          <div class="review-links">
+            <a class="review-link" href="https://yonkersbcc.org/" target="_blank" rel="noopener noreferrer">Visit organization</a>
+            <a class="review-link primary" href="https://www.facebook.com/share/r/1BaTH5Ckxs/" target="_blank" rel="noopener noreferrer">Watch team intro ↗</a>
+          </div>
+        </article>
+
+        <article class="review-card reveal delay-1">
+          <span class="proof-badge">Instagram review</span>
+          <h3><a href="https://www.inclassinc.org/" target="_blank" rel="noopener noreferrer">Nia Hogan</a></h3>
+          <div class="review-role">Founder, InCLASS Inc.</div>
+          <div class="review-service">Google Ad Grants Support</div>
+          <p>Helped strengthen Google Ad Grants direction, website clarity, campaign readiness, and the path from search visibility to meaningful action.</p>
+          <div class="review-links">
+            <a class="review-link" href="https://www.inclassinc.org/" target="_blank" rel="noopener noreferrer">Visit organization</a>
+            <a class="review-link primary" href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDY5MjYzMDIxNjkwNjA3?story_media_id=3914909284853227023_1410712384&amp;igsh=MW43eXZxZG82eDI5Nw==" target="_blank" rel="noopener noreferrer">Watch review ↗</a>
+          </div>
+        </article>
+      </div>
+      <p class="container proof-note reveal">Original proof opens on Instagram or Facebook. Platform login requirements may vary by visitor.</p>
     </section>
 
     <section class="section-pad process" id="process">
