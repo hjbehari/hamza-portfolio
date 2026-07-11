@@ -1,0 +1,67 @@
+name: Embed HubSpot inquiry form
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/embed-hubspot-form.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  embed-form:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Replace static inquiry form with HubSpot embed
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+
+          replacement = '''        <div class="mini-form hubspot-form-shell" id="projectForm" aria-label="Project inquiry form">
+          <div class="hubspot-form-heading">
+            <span class="hubspot-form-kicker">Project inquiry</span>
+            <p>Your details will be securely submitted to Hamza's HubSpot CRM.</p>
+          </div>
+          <script src="https://js-na2.hsforms.net/forms/embed/246644683.js" defer></script>
+          <div class="hs-form-frame" data-region="na2" data-form-id="9462e788-964a-4e3a-8e19-41f201bb006c" data-portal-id="246644683"></div>
+        </div>'''
+
+          pattern = r'\s*<form class="mini-form" id="projectForm">.*?</form>'
+          html, count = re.subn(pattern, '\n' + replacement, html, count=1, flags=re.S)
+          if count != 1:
+              raise SystemExit('Could not locate the existing project form.')
+
+          style = '''
+  <style id="hubspot-form-shell-styles">
+    .hubspot-form-shell{min-height:520px;padding:28px;border:1px solid rgba(155,234,202,.18);background:linear-gradient(180deg,rgba(13,17,16,.98),rgba(7,9,8,.96));border-radius:28px;box-shadow:0 30px 80px rgba(0,0,0,.34);overflow:hidden}
+    .hubspot-form-heading{padding:0 2px 18px;margin-bottom:18px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .hubspot-form-kicker{display:inline-flex;color:#06100c;background:#9BEACA;border-radius:999px;padding:7px 11px;font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+    .hubspot-form-heading p{margin:0;color:#B8C1BA;font-size:.9rem;line-height:1.6}
+    .hs-form-frame{min-height:420px}
+    @media(max-width:720px){.hubspot-form-shell{padding:18px;border-radius:22px;min-height:560px}}
+  </style>
+'''
+          html = html.replace('  <link rel="stylesheet" href="style.css" />', '  <link rel="stylesheet" href="style.css" />' + style)
+          path.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Commit HubSpot form embed
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "HubSpot form already embedded."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Embed HubSpot CRM inquiry form"
+          git push
