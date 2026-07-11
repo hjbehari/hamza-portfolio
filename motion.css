@@ -1,0 +1,38 @@
+/* Performance-safe motion layer */
+:root{--ease-premium:cubic-bezier(.22,1,.36,1);--motion-fast:220ms;--motion-slow:700ms}
+html.motion-ready{scroll-behavior:smooth}
+.motion-ready .site-header{transition:transform .45s var(--ease-premium),background .3s ease,border-color .3s ease,box-shadow .3s ease}
+.motion-ready .site-header.is-scrolled{background:rgba(8,12,10,.9);border-color:rgba(155,234,202,.2);box-shadow:0 18px 70px rgba(0,0,0,.48)}
+.motion-ready .btn,.motion-ready .panel-cta,.motion-ready .review-link,.motion-ready .social-link{transition:transform var(--motion-fast) var(--ease-premium),box-shadow var(--motion-fast) ease,border-color var(--motion-fast) ease,background var(--motion-fast) ease,color var(--motion-fast) ease}
+.motion-ready .btn:hover,.motion-ready .panel-cta:hover,.motion-ready .review-link:hover,.motion-ready .social-link:hover{transform:translateY(-3px) scale(1.012)}
+.motion-ready .btn:active,.motion-ready .panel-cta:active,.motion-ready .review-link:active{transform:translateY(0) scale(.985)}
+.motion-ready .service-card,.motion-ready .audience-card,.motion-ready .router-card,.motion-ready .review-card,.motion-ready .work-card,.motion-ready .faq-item{transform:translateZ(0);transition:transform .55s var(--ease-premium),border-color .35s ease,box-shadow .55s var(--ease-premium),background .35s ease}
+.motion-ready .service-card:hover,.motion-ready .audience-card:hover,.motion-ready .router-card:hover,.motion-ready .review-card:hover{transform:translateY(-9px);border-color:rgba(155,234,202,.38);box-shadow:0 26px 70px rgba(0,0,0,.34),0 0 0 1px rgba(155,234,202,.05)}
+.motion-ready .service-icon{transition:transform .55s var(--ease-premium),background .3s ease,box-shadow .3s ease}
+.motion-ready .service-card:hover .service-icon{transform:rotate(-7deg) scale(1.1);background:rgba(155,234,202,.16);box-shadow:0 14px 36px rgba(155,234,202,.12)}
+.motion-ready .work-card{--project-glow:rgba(155,234,202,.18)}
+.motion-ready .work-card:hover{transform:translateY(-10px);box-shadow:0 34px 100px rgba(0,0,0,.48),0 0 60px var(--project-glow)}
+.motion-ready .work-card[data-case="brightside"]{--project-glow:rgba(255,190,120,.16)}
+.motion-ready .work-card[data-case="inclass"]{--project-glow:rgba(105,180,255,.16)}
+.motion-ready .work-card[data-case="megan"]{--project-glow:rgba(215,130,255,.15)}
+.motion-ready .work-card[data-case="realestate"]{--project-glow:rgba(255,90,90,.14)}
+.motion-ready .work-card[data-case="redline"]{--project-glow:rgba(255,35,35,.18)}
+.motion-ready .work-card img{transition:transform 1.1s var(--ease-premium),filter .6s ease}
+.motion-ready .work-card:hover img{transform:scale(1.055);filter:saturate(1.08) contrast(1.03)}
+.motion-ready .text-btn{transition:transform .25s var(--ease-premium),color .25s ease}
+.motion-ready .work-card:hover .text-btn{transform:translateX(5px);color:var(--accent)}
+.motion-ready .portrait-frame{transform-style:preserve-3d;will-change:transform;transition:transform .25s ease-out,box-shadow .4s ease}
+.motion-ready .hero-visual:hover .portrait-frame{box-shadow:var(--shadow),0 0 90px rgba(155,234,202,.12)}
+.motion-ready .floating-card{will-change:transform}
+.motion-ready .hero-proof div{transition:transform .4s var(--ease-premium),border-color .3s ease,background .3s ease}
+.motion-ready .hero-proof div:hover{transform:translateY(-6px);border-color:rgba(155,234,202,.3);background:rgba(155,234,202,.065)}
+.motion-ready .section-pad{content-visibility:auto;contain-intrinsic-size:800px}
+.motion-ready .hero{content-visibility:visible}
+.motion-ready img[loading="lazy"]{content-visibility:auto}
+.motion-ready .motion-blur{opacity:0;filter:blur(10px);transform:translateY(28px)}
+.motion-ready .motion-line{overflow:hidden}
+.motion-ready .motion-line>*{display:block}
+.motion-ready .metric-card strong{font-variant-numeric:tabular-nums}
+.motion-ready .orb{will-change:transform}
+@media (max-width:760px){.motion-ready .service-card:hover,.motion-ready .audience-card:hover,.motion-ready .router-card:hover,.motion-ready .review-card:hover,.motion-ready .work-card:hover{transform:none}.motion-ready .section-pad{content-visibility:visible}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.motion-ready .motion-blur{opacity:1;filter:none;transform:none}.motion-ready .portrait-frame{transform:none!important}}
