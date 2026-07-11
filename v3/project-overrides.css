@@ -1,0 +1,15 @@
+.project{min-height:500px}
+.project-visual{min-height:500px}
+.text-visual{position:relative;isolation:isolate;padding:34px}
+.text-visual:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,rgba(255,255,255,.035),transparent 55%);z-index:-1}
+.text-visual strong{font-size:clamp(76px,10vw,150px);letter-spacing:-.06em;max-width:100%;overflow-wrap:anywhere}
+.text-visual span,.text-visual small{font-size:11px;font-weight:800}
+.visual-bcc{background:radial-gradient(circle at 50% 35%,rgba(155,234,202,.17),transparent 38%),#0c1210}
+.visual-inclass{background:radial-gradient(circle at 50% 35%,rgba(118,173,255,.22),transparent 40%),#0b1018}
+.visual-inclass strong{color:#b9d3ff;font-size:clamp(68px,9vw,132px)}
+.visual-phero{background:radial-gradient(circle at 50% 35%,rgba(205,164,255,.22),transparent 40%),#120d18}
+.visual-phero strong{color:#d7b8ff}
+.visual-megan{background:radial-gradient(circle at 50% 35%,rgba(255,184,146,.2),transparent 40%),#17100d}
+.visual-megan strong{color:#ffc0a0}
+@media(max-width:980px){.project,.project-visual{min-height:380px}}
+@media(max-width:680px){.project,.project-visual{min-height:300px}.text-visual strong{font-size:clamp(62px,23vw,104px)}.visual-inclass strong{font-size:clamp(54px,19vw,88px)}}
