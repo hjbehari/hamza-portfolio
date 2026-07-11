@@ -1,3 +1,5 @@
+const projectStyles=document.createElement('link');projectStyles.rel='stylesheet';projectStyles.href='project-overrides.css';document.head.appendChild(projectStyles);
+
 const qs=(s,c=document)=>c.querySelector(s);const qsa=(s,c=document)=>[...c.querySelectorAll(s)];
 
 const progress=qs('.progress span');
