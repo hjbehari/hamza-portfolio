@@ -1,0 +1,54 @@
+name: Fix review link mapping
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-review-links.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Correct client review links
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+
+          links = {
+              'Megan Kashat': 'https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDY5MjYzMDIxNjkwNjA3?story_media_id=3914909284853227023_1410712384&amp;igsh=MW43eXZxZG82eDI5Nw==',
+              'Mukhtar Aloma': 'https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDY5MjYzMDIxNjkwNjA3?story_media_id=3902056190972871374_1410712384&amp;igsh=MW43eXZxZG82eDI5Nw==',
+              'Nia Hogan': 'https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDY5MjYzMDIxNjkwNjA3?story_media_id=3907266950735633816_1410712384&amp;igsh=MW43eXZxZG82eDI5Nw==',
+          }
+
+          for name, url in links.items():
+              pattern = rf'(<article class="review-card[^>]*>.*?<h3><a[^>]*>{re.escape(name)}</a></h3>.*?<a class="review-link primary" href=")[^"]+("[^>]*>Watch review ↗</a>)'
+              html, count = re.subn(pattern, rf'\1{url}\2', html, count=1, flags=re.S)
+              if count != 1:
+                  raise SystemExit(f'Could not update review link for {name}')
+
+          path.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Commit corrected mapping
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "Review links already correct."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Correct client review link mapping"
+          git push
