@@ -36,6 +36,59 @@
     .proof-note{color:var(--dim);font-size:12px;line-height:1.6;margin-top:20px;text-align:center}
     @media(max-width:760px){.review-grid{grid-template-columns:1fr}.review-card{min-height:auto}.review-card h3{font-size:38px}}
   </style>
+<style id="hubspot-form-shell-styles">
+  .hubspot-form-shell {
+    min-height: 520px;
+    padding: 28px;
+    border: 1px solid rgba(155, 234, 202, 0.18);
+    background: linear-gradient(
+      180deg,
+      rgba(13, 17, 16, 0.98),
+      rgba(7, 9, 8, 0.96)
+    );
+    border-radius: 28px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.34);
+    overflow: hidden;
+  }
+
+  .hubspot-form-heading {
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .hubspot-form-kicker {
+    display: inline-flex;
+    color: #06100c;
+    background: #9BEACA;
+    border-radius: 999px;
+    padding: 7px 11px;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .hubspot-form-heading p {
+    margin: 0;
+    color: #B8C1BA;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .hs-form-frame {
+    min-height: 420px;
+  }
+
+  @media (max-width: 720px) {
+    .hubspot-form-shell {
+      padding: 18px;
+      border-radius: 22px;
+      min-height: 560px;
+    }
+  }
+</style>
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -415,24 +468,21 @@
           </div>
         </div>
 
-        <form class="mini-form" id="projectForm">
-          <label>
-            <span>I am a...</span>
-            <select name="type" required>
-              <option value="Nonprofit owner">Nonprofit owner</option>
-              <option value="Small business owner">Small business owner</option>
-              <option value="Service provider">Service provider</option>
-              <option value="Creator / influencer">Creator / influencer</option>
-              <option value="Other">Other</option>
-            </select>
-          </label>
-          <label>
-            <span>What feels stuck?</span>
-            <textarea name="problem" rows="4" placeholder="Website clarity, content, leads, donor trust, branding, SEO..." required></textarea>
-          </label>
-          <button class="btn btn-primary" type="submit">Send Project Context</button>
-          <small>No backend. This opens your email app with a pre-written message.</small>
-        </form>
+ <div class="mini-form hubspot-form-shell" id="projectForm" aria-label="Project inquiry form">
+  <div class="hubspot-form-heading">
+    <span class="hubspot-form-kicker">Project inquiry</span>
+    <p>Your details will be securely submitted to my HubSpot CRM.</p>
+  </div>
+
+  <script src="https://js-na2.hsforms.net/forms/embed/246644683.js" defer></script>
+
+  <div
+    class="hs-form-frame"
+    data-region="na2"
+    data-form-id="9462e788-964a-4e3a-8e19-41f201bb006c"
+    data-portal-id="246644683">
+  </div>
+</div>
       </div>
     </section>
   </main>
