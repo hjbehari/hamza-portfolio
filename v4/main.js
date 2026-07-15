@@ -1,3 +1,8 @@
+const signatureStyle=document.createElement('link');
+signatureStyle.rel='stylesheet';
+signatureStyle.href='v4/signature.css';
+document.head.appendChild(signatureStyle);
+
 const qs=(s,c=document)=>c.querySelector(s);
 const qsa=(s,c=document)=>[...c.querySelectorAll(s)];
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
